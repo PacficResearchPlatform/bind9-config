@@ -6,8 +6,12 @@ metadata:
     visualize: "true"
   name: bind9-service
 spec:
+  externalIPs:
+  - 67.58.50.101
   ports:
-    - port: 53 
+    - port: 1053 
+      targetPort: 53
       protocol: UDP
   selector:
     app: bind9-service
+

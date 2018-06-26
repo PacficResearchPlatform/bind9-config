@@ -8,6 +8,8 @@ YAMLFILES=$(subst .in,,$(YAMLPROTOTYPES))
 
 default: $(YAMLFILES)
 
+yaml: $(YAMLFILES)
+
 $(YAMLFILES):
 	/bin/sed $(SEDSPEC) $@.in > $@
 
