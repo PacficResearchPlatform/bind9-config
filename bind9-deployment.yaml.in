@@ -1,0 +1,39 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  labels:
+    app: bind9-service 
+  name: bind9-service 
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: bind9-service 
+    spec:
+      containers:
+      - name: bind9 
+        image: @REGISTRY@/bind9:latest
+        resources:
+          requests:
+            memory: "1.0Gi"
+            cpu: "500m"
+          limits:
+            memory: "1.0Gi"
+            cpu: "500m"
+        volumeMounts:
+          - name: named-var 
+            mountPath: /var/named
+        ports:
+        - containerPort: 53
+          protocol: TCP
+        - containerPort: 53
+          protocol: UDP 
+        securityContext:
+          runAsUser: 0
+      volumes:
+      - name: named-var 
+        nfs:
+           # FIXME: use the right IP
+           server: @NFS_SERVER_IP@
+           path: "/export/home/bind9/var"
