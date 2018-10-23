@@ -9,7 +9,7 @@ spec:
   externalIPs:
   - 67.58.50.101
   ports:
-    - port: 1053 
+    - port: 53 
       targetPort: 53
       protocol: UDP
   selector:
