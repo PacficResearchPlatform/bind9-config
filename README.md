@@ -29,7 +29,18 @@ you delete it)
 
 	kubectl create -f bind9-deployment
 
+7. Add neighbor ARP proxy to the public interface. 
+
+	ip neigh add proxy 67.58.50.101 dev enp6s0f0
+
+8. Update  route on default docker0 bridge
+
+	ip route add 67.58.50.101 dev docker0
+	ip route show
 
 NOTES:
+
 Docker registry is setup by the Kubernetes roll and is on port 5443.
 See https://docs.docker.com/registry/ for details on registry
+
+May need to use in 8: ip route add 67.58.50.101/32 dev docker0
