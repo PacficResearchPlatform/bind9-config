@@ -33,4 +33,3 @@ you delete it)
 NOTES:
 Docker registry is setup by the Kubernetes roll and is on port 5443.
 See https://docs.docker.com/registry/ for details on registry
-test
